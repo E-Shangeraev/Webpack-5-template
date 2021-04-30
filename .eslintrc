@@ -1,5 +1,4 @@
 {
-  "extends": ["eslint:recommended", "react-app", "prettier"],
   "parser": "babel-eslint",
   "rules": {
     "semi": "off",
@@ -11,13 +10,24 @@
     "vars-on-top": "off",
     "linebreak-style": "off",
     "prefer-destructuring": "off",
-    "indent": [2, "tab"],
-    "no-unresolved": [2, { "commonjs": true }]
+    "indent": ["error", 2],
+    "import/no-extraneous-dependencies": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never"
+      }
+    ]
   },
   "env": {
     "browser": true,
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb"]
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "plugins": ["prettier"],
+  "extends": ["airbnb", "prettier"]
 }

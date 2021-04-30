@@ -1,29 +1,32 @@
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const path = require('path')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-const isDev = process.env.NODE_ENV === 'development';
-const isProd = !isDev;
+const isDev = process.env.NODE_ENV === 'development'
+const isProd = !isDev
 
-const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
+const filename = ext => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`)
 
-const cssLoaders = (extra) => {
-  let loaders = [isDev ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'];
+const cssLoaders = extra => {
+  const loaders = [
+    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+    'css-loader',
+  ]
 
   if (extra) {
-    loaders.push(extra);
+    loaders.push(extra)
   }
 
-  return loaders;
-};
+  return loaders
+}
 
 const plugins = () => {
-  let base = [
+  const base = [
     new HTMLWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
       minify: {
@@ -42,40 +45,40 @@ const plugins = () => {
     new MiniCssExtractPlugin({
       filename: filename('css'),
     }),
-  ];
+  ]
 
   if (isProd) {
-    base.push(new BundleAnalyzerPlugin());
+    base.push(new BundleAnalyzerPlugin())
   }
 
-  return base;
-};
+  return base
+}
 
-const babelOptions = (preset) => {
-  let opts = {
+const babelOptions = preset => {
+  const opts = {
     presets: ['@babel/preset-env'],
     plugins: ['@babel/plugin-proposal-class-properties'],
-  };
+  }
   if (preset) {
-    opts.presets.push(preset);
+    opts.presets.push(preset)
   }
 
-  return opts;
-};
+  return opts
+}
 
 const jsLoaders = () => {
-  let loaders = [
+  const loaders = [
     {
       loader: 'babel-loader',
       options: babelOptions(),
     },
-  ];
+  ]
   if (isDev) {
-    loaders.push('eslint-loader');
+    loaders.push('eslint-loader')
   }
 
-  return loaders;
-};
+  return loaders
+}
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -89,7 +92,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.js', '.ts', '.json'],
+    extensions: ['.js', '.json', '.ts'],
     alias: {
       '@public': path.resolve(__dirname, 'public'),
       '@models': path.resolve(__dirname, 'src/models'),
@@ -161,4 +164,4 @@ module.exports = {
       },
     ],
   },
-};
+}
