@@ -7,7 +7,9 @@
     "dev": "cross-env NODE_ENV=development webpack --mode development --watch",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "serve": "cross-env NODE_ENV=development webpack serve --mode development --open",
-    "stats": "webpack --json  > stats.json && webpack-bundle-analyzer stats.json"
+    "stats": "webpack --json  > stats.json && webpack-bundle-analyzer stats.json",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "keywords": [],
   "author": "",
@@ -34,6 +36,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.5.1",

@@ -1,8 +1,8 @@
 export default class Post {
   constructor(title, img) {
-    this.title = title;
-    this.img = img;
-    this.date = new Date();
+    this.title = title
+    this.img = img
+    this.date = new Date()
   }
 
   toString() {
@@ -13,11 +13,27 @@ export default class Post {
         img: this.img,
       },
       null,
-      2,
-    );
+      2
+    )
   }
 
   get uppercaseTitle() {
-    return this.title.toUpperCase();
+    return this.title.toUpperCase()
   }
 }
+
+console.log('Работает')
+let asd = 42
+asd++
+let ASas = 13
+ASas += 1
+
+const arrow = a => {
+  console.log('arrow')
+}
+
+const obj = {
+  name: 'John',
+}
+
+const name = obj.name

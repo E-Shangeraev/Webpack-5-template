@@ -2,12 +2,22 @@
   "extends": ["eslint:recommended", "react-app", "prettier"],
   "parser": "babel-eslint",
   "rules": {
+    "semi": "off",
+    "no-console": "warn",
+    "no-alert": "warn",
     "no-unused-vars": "warn",
-    "jsx-quotes": [1],
-    "no-console": 2
+    "no-plusplus": "off",
+    "max-len": ["error", 80],
+    "vars-on-top": "off",
+    "linebreak-style": "off",
+    "prefer-destructuring": "off",
+    "indent": [2, "tab"],
+    "no-unresolved": [2, { "commonjs": true }]
   },
   "env": {
+    "browser": true,
     "es6": true,
-    "browser": true
-  }
+    "node": true
+  },
+  "extends": ["airbnb"]
 }
